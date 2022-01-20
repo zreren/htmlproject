@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ulList"></ul>
+
+<script>
+let datas = [
+    {
+        name: '第一阶段 JS 基础入门',
+        children: [
+            {
+                name: '第一章 走入 JavaScript 的世界',
+                children: [
+                    {
+                        name: 'JavaScript简介'
+                    },
+                    {
+                        name: 'JavaScript可以做什么？'
+                    },
+                    {
+                        name: 'Web中哪些时候需要用到'
+                    }
+                ]
+            },
+            {
+                name: '第二章 玩转属性操作',
+                children: [
+                    {
+                        name: '什么是属性'
+                    },
+                    {
+                        name: 'JS 属性操作'
+                    },
+                    {
+                        name: 'JS 中两种操作属性的方法'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: '第二阶段  JS核心功能探秘',
+        children: [
+            {
+                name: '第一章 ECMAScript 6',
+                children: [
+                    {
+                        name: 'let 和 const'
+                    },
+                    {
+                        name: '解构赋值'
+                    },
+                    {
+                        name: '展开运算符'
+                    }
+                ]
+            },
+            {
+                name: '第二章 DOM',
+                children: [
+                    {
+                        name: '什么是DOM'
+                    },
+                    {
+                        name: 'DOM 节点类型'
+                    },
+                    {
+                        name: 'DOM 树及DOM关系'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: '第三阶段 JavaScript 高级进阶',
+        children: [
+            {
+                name: '第一章 面向对象&继承&组件开发'
+            },
+            {
+                name: '第二章 Node.js'
+            },
+            {
+                name: '第三章 客户端信息存储'
+            }
+        ]
+    }
+];
+let ulList = document.getElementById('ulList');
+
+ulList.innerHTML = createHTML(datas);
+function createHTML(items,level =0){
+    return items.map(item =>{
+        let html =`<li style="padding-left: ${level * 30}px;">${item.name}</li>`;
+        if(item.children && Array.isArray(item.children)){
+            html += createHTML(item.children,level+1);
+        }
+        return html;
+    }).join('');
+}
+
+</script>
+</body>
+</html>
